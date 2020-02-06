@@ -9,6 +9,7 @@ knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(gov.1005.data)
 library(ggplot2)
+library(ggthemes)
 ```
 
 ```{r}
@@ -25,7 +26,19 @@ age_data <- congress %>%
 ggplot(age_data, aes(year, avg_age)) + 
   geom_line(aes(color = ifelse(party == "R", 'blue', 'red'))) +
   xlim(1945, 2015) +
-  ylim(35, 65)
+  ylim(35, 65) + 
+  ggtitle("Average Age of Members of Congress", subtitle = "At start of term, 1947-2013") + 
+  theme_fivethirtyeight(base_size = 12, base_family = "sans") +
+  theme(legend.position = "none") + 
+  geom_label(
+    label="Republicans", 
+    x=10,
+    y=10,
+    label.padding = unit(0.55, "lines"), # Rectangle size around label
+    label.size = 0.35,
+    color = "black",
+    fill="#69b3a2"
+  )
 
 
 ```
