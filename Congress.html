@@ -127,9 +127,7 @@ $(document).ready(function () {
 </div>
 
 
-<pre class="r"><code>data(congress
-     )
-congress %&gt;%
+<pre class="r"><code>congress %&gt;%
   arrange(desc(age))</code></pre>
 <pre><code>## # A tibble: 18,635 x 7
 ##     year party firstname lastname     age incumbent chamber
@@ -145,6 +143,18 @@ congress %&gt;%
 ##  9  1993 R     J.        Thurmond    90.1 TRUE      senate 
 ## 10  2013 R     Ralph     Hall        89.7 TRUE      house  
 ## # … with 18,625 more rows</code></pre>
+<pre class="r"><code>congress %&gt;%
+  group_by(party) %&gt;% 
+  summarise(avg_age = mean(age))</code></pre>
+<pre><code>## # A tibble: 6 x 2
+##   party avg_age
+##   &lt;chr&gt;   &lt;dbl&gt;
+## 1 AL       42.3
+## 2 D        53.4
+## 3 I        54.1
+## 4 ID       55.1
+## 5 L        34.4
+## 6 R        53.2</code></pre>
 
 
 
